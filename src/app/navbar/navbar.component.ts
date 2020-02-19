@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  navbar = 'Navigation Bar';
+  navbarlist = ['About','Home','Car','Contact','For Sale','Login'];
   
   constructor() { }
 
