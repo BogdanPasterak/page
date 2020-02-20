@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Link } from '../link';
 
 @Component({
@@ -9,18 +9,23 @@ import { Link } from '../link';
 export class NavbarComponent implements OnInit {
 
   navbarlist :Link[] = [
-    { display : 'About', target: '#about', secret: false},
-    { display : 'Home', target: '#home', secret: false},
-    { display : 'Car', target: '#car', secret: false},
+    { display : 'About', target: 'about', secret: false},
+    { display : 'Home', target: 'home', secret: false},
+    { display : 'Car', target: 'car', secret: false},
     { display : 'Contact', target: 'contact', secret: false},
-    { display : 'For Sale', target: 'for-sale', secret: false},
+    { display : 'For Sale', target: 'forsale', secret: false},
     { display : 'Login', target: 'login', secret: false}
   ]
- 
+
+  @Output() messageEvent = new EventEmitter<string>();
   
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  sendMessage(message) {
+    this.messageEvent.emit(message)
   }
 
 }
