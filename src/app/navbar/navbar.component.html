@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li *ngFor="let nav of navbarlist">
-                    <a href="#" (click)="sendMessage(nav.target)">{{nav.display}}</a>
+                    <a *ngIf="nav.public" href={{nav.target}} (click)="sendMessage(nav.target)">{{nav.display}}</a>
                 </li>
 
             </ul>
