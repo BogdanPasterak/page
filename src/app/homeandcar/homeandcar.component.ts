@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeandcarComponent implements OnInit {
 
-  title = 'Home & Car Service';
+  section: string = 'myPage';
+  mainpage: boolean = true;
 
   constructor() { }
 
@@ -16,7 +17,12 @@ export class HomeandcarComponent implements OnInit {
 
 
   receiveMsg($event) {
-    this.title = $event;
+    console.log('recidive', $event)
+    this.section = $event;
+    if ($event == "forsale")
+      this.mainpage = false;
+    else
+      this.mainpage = true;
   }
 
 }

@@ -6,9 +6,9 @@ import { HomeandcarComponent } from './homeandcar/homeandcar.component';
 
 
 const routes: Routes = [
-  // { path: '/homeandcar', component: HomeandcarComponent},
-  // { path: '/forsale', component: ForsaleComponent},
-  { path: '', redirectTo: '/homeandcar', pathMatch: 'full'}
+  { path: 'homeandcar', component: HomeandcarComponent},
+  { path: 'forsale', component: ForsaleComponent}
+  // { path: '', redirectTo: '/homeandcar', pathMatch: 'full'}
 
 ];
 
