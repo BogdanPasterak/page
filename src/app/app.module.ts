@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { ForsaleComponent } from './forsale/forsale.component';
+import { HomeandcarComponent } from './homeandcar/homeandcar.component';
 
+import { FormsModule } from '@angular/forms'
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HeaderComponent,
-    ForsaleComponent
+    ForsaleComponent,
+    HomeandcarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
