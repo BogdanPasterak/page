@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Logo Home & Car Service -->
+<!-- Autor Bogdan Pasterak -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 202" stroke-linecap="round" stroke="black">
+   <!-- SERVICE -->
+   <g stroke-width="11"  fill="none" stroke="#b40">
+      <!-- S -->
+      <path d="M123 8 Q123 17 133 17 H150 Q160 17 160 26" />
+      <!-- E -->
+      <path d="M123 52 C123 26 160 26 160 52" />
+      <path d="M142 52 L142 33" />
+      <!-- R -->
+      <path d="M123 65 L148 65 A12 12 0 1 1 136 77" />
+      <path d="M136 77 Q123 77 123 87" />
+      <!-- V -->
+      <path d="M160 99 L122.5 112" />
+      <path d="M160 124.5 L122.5 112" />
+      <!-- I -->
+      <path d="M160 136 H123" />
+      <!-- C -->
+      <path d="M123 168 C123 142 160 142 160 168" />
+      <!-- E -->
+      <path d="M123 195 C123 169 160 169 160 195" />
+      <path d="M142 195 L142 176" />
+   </g>
+   <!-- Home-->
+   <g stroke-width="0" fill="black" >
+      <!-- Chimney 22 93 95 26 -->
+      <path d="M52 62 V27 H43 V10 H94 V27 H86 V36 Z" />
+      <!-- Roof -->
+      <path d="M110 27 C100 27 30 90 11 98 L17 114 C35 102 90 38 110 33 V40
+      L18 122 Q12 125 9 116 L3 100 Q0 93 10 89 C20 89 84 29 95 27 Z" />
+      <!-- Wall -->
+      <path d="M18 120 L107 42 L110 45 V81 C93 81 93 111 110 111 V141 H97
+      V145 H43 V183 H81 V145 H97 V196 H110 V200 H33 Z" />
+   </g>
+   <!-- Car -->
+   <g stroke-width="0" fill="black" >
+      <path d="M171 31 Q183 34 195 39 Q245 37 223 55 Q238 65 250 77
+      Q300 92 261 97 Q263 105 283 113 L274 94 L278 90 L290 115 Q305 130 294 164
+      H297 Q299 164 299 166 V178 Q299 180 297 180 H288 L286 178 L280 182 H253
+      A40 40 0 1 0 181.4 182 H171 V85 H217 L222 73 Q223 70 220 67 Q195 44 171 41 Z" />
+      <circle cx="217.3" cy="164.2" r="10.5" />
+      <circle cx="217.3" cy="164.2" r="31.5" fill="none" stroke-width="11" />
+   </g>
+</svg>
