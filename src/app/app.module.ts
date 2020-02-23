@@ -8,14 +8,16 @@ import { HeaderComponent } from './header/header.component';
 import { ForsaleComponent } from './forsale/forsale.component';
 import { HomeandcarComponent } from './homeandcar/homeandcar.component';
 
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { AboutComponent } from './about/about.component'
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HeaderComponent,
     ForsaleComponent,
-    HomeandcarComponent
+    HomeandcarComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

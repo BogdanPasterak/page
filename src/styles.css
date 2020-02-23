@@ -1,26 +1,33 @@
 body {
     font: 400 15px Lato, sans-serif;
     line-height: 1.8;
-    color: #818181;
+    color: #805;
+    background-color: #cff;
 }
 
 h2 {
     font-size: 24px;
     text-transform: uppercase;
-    color: #303030;
+    color: inherit;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 h4 {
     font-size: 19px;
     line-height: 1.375em;
-    color: #303030;
+    color: inherit;
     font-weight: 400;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .space-navbar {
     padding: 50px 0 20px;
     margin: 0;
+}
+
+.container {
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 15px;
 }

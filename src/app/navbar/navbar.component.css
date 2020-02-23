@@ -1,6 +1,6 @@
 .navbar {
     margin-bottom: 0;
-    background-color: #f4511e;
+    background-color: #107;
     z-index: 9999;
     border: 0;
     font-size: 12px !important;
@@ -13,12 +13,18 @@
 .navbar li a,
 .navbar .navbar-brand {
     color: #fff !important;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
-.navbar-nav li a:hover,
 .navbar-nav li.active a {
-    color: #f4511e !important;
-    background-color: #fff !important;
+    color: #805 !important;
+    background-color: #39f!important;
+}
+
+.navbar-nav li a:hover {
+    color: #805 !important;
+    background-color: #cff !important;
 }
 
 .navbar-default .navbar-toggle {
@@ -34,4 +40,10 @@
     width: 60px;
     padding: 4px;
     background-color: white;
+}
+
+.logo-navbar:hover {
+    background-color: #cff;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
