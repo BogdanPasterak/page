@@ -1,0 +1,14 @@
+@media (min-width: 768px) {
+    .vcenter {
+        display: inline-block;
+        vertical-align: middle;
+        float: none;
+    }
+}
+
+@media (max-width: 769px) {
+    .vcenter.col-sm-5 {
+        max-width: 70%;
+        margin: auto;
+    }
+}
