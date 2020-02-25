@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Serv } from '../serv';
 
 @Component({
   selector: 'app-lielement',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lielement.component.css']
 })
 export class LielementComponent implements OnInit {
+
+  @Input() serv: Serv;
 
   constructor() { }
 

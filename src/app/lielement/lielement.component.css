@@ -1,0 +1,11 @@
+.element {
+    margin: 15px;
+    padding: 0 10px 5px;
+    border-radius: 25px 0;
+    background-color: rgba(255, 238, 0, 0.4);
+}
+
+h3 {
+    display: inline-block;
+    padding-left: 15px;
+}

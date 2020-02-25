@@ -9,9 +9,13 @@ import { Serv } from '../serv'
 export class CarComponent implements OnInit {
 
   servlist:Serv[] = [
-    { title: 'aaa', description: 'bbb'},
-    { title: 'ccc', description: 'bbb'},
-    { title: 'ddd', description: 'bbb'}
+    { symbol: "fas fa-tools", title: 'Pre-NCT and re-Test service', description: 'Bacon ipsum dolor amet andouille cupim swine pig ribeye, drumstick kielbasa pork doner sausage bacon landjaeger venison.'},
+    { symbol: "fas fa-tools", title: 'Common rail injector test', description: 'Bacon ipsum dolor amet andouille cupim swine pig ribeye, drumstick kielbasa pork doner sausage bacon landjaeger venison.'},
+    { symbol: "fas fa-tools", title: 'Car washing and valleting', description: 'Bacon ipsum dolor amet andouille cupim swine pig ribeye, drumstick kielbasa pork doner sausage bacon landjaeger venison.'},
+    { symbol: "fas fa-tools", title: 'Exhaust Welding & Service', description: 'Bacon ipsum dolor amet andouille cupim swine pig ribeye, drumstick kielbasa pork doner sausage bacon landjaeger venison.'},
+    { symbol: "fas fa-tools", title: 'Light alignment for NCT', description: 'Bacon ipsum dolor amet andouille cupim swine pig ribeye, drumstick kielbasa pork doner sausage bacon landjaeger venison.'},
+    { symbol: "fas fa-tools", title: 'Wheel alignment', description: 'Bacon ipsum dolor amet andouille cupim swine pig ribeye, drumstick kielbasa pork doner sausage bacon landjaeger venison.'},
+    { symbol: "fas fa-tools", title: 'Car servicing', description: 'Bacon ipsum dolor amet andouille cupim swine pig ribeye, drumstick kielbasa pork doner sausage bacon landjaeger venison.'}
   ]
 
   constructor() { }
