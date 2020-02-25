@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { CarComponent } from './car/car.component';
-import { ContactComponent } from './contact/contact.component'
+import { ContactComponent } from './contact/contact.component';
+import { LielementComponent } from './lielement/lielement.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { ContactComponent } from './contact/contact.component'
     AboutComponent,
     HomeComponent,
     CarComponent,
-    ContactComponent
+    ContactComponent,
+    LielementComponent
   ],
   imports: [
     BrowserModule,

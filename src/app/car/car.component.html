@@ -1,1 +1,21 @@
-<p>car works!</p>
+<div class="car space-navbar container-fluid">
+    <div class="row">
+        <h2>Car Service</h2>
+    </div>
+    <div class="row">
+        <ul>
+            <li *ngFor="let serv of servlist">
+                <span>
+                    <i class="fas fa-tools"></i>
+                    <h4 style="display: inline;">{{serv.title}}</h4>
+                </span>
+                <p>{{serv.description}}</p>
+            </li>
+
+        </ul>
+
+        <!-- <div class="col-sm-5 slideanim vcenter">
+            <img class="align-middle" src="assets/img/logo.svg" alt="logo">
+        </div> -->
+    </div>
+</div>

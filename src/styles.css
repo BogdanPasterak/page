@@ -11,6 +11,7 @@ h2 {
     color: inherit;
     font-weight: 600;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 h4 {
@@ -22,7 +23,7 @@ h4 {
 }
 
 .space-navbar {
-    padding: 50px 0 20px;
+    padding: 50px 25px 20px 20px;
     margin: 0;
 }
 

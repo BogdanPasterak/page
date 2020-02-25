@@ -1,3 +1,7 @@
+.about {
+    background-color: #dff;
+}
+
 @media (min-width: 768px) {
     .vcenter {
         display: inline-block;
