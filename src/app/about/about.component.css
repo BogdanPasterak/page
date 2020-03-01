@@ -10,6 +10,14 @@
     }
 }
 
+.carousel-control {
+    width: 10%;
+}
+
+.item img {
+    margin: 1.5em 0;
+}
+
 @media (max-width: 769px) {
     .vcenter.col-sm-5 {
         max-width: 70%;

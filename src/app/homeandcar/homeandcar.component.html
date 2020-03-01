@@ -1,23 +1,25 @@
 <app-navbar id="myPage" (messageEvent)="receiveMsg($event)"></app-navbar>
-<div *ngIf="mainpage; else salepage">
-    <app-header></app-header>
-    <app-about id="about"></app-about>
+<div class="homeandcar">
+    <div *ngIf="mainpage; else salepage">
+        <app-header></app-header>
+        <app-about id="about"></app-about>
 
-    <app-home id="home"></app-home>
-    <!-- <p>{{section}}</p> -->
-    <app-car id="car"></app-car>
-    <div id="contact" class="space-navbar" style="width: 100%; height: 500px; background-color: #afa;">
-        <p>fill 4</p>
+        <app-home id="home"></app-home>
+        <!-- <p>{{section}}</p> -->
+        <app-car id="car"></app-car>
+        <div id="contact" class="space-navbar" style="width: 100%; height: 500px; background-color: #afa;">
+            <p>fill 4</p>
+        </div>
+        <div class="content" role="main"></div>
     </div>
-    <div class="content" role="main"></div>
-</div>
-<div id="forsale">
-    <ng-template #salepage class="space-navbar">
+    <div id="forsale">
+        <ng-template #salepage class="space-navbar">
 
-        <app-forsale></app-forsale>
+            <app-forsale></app-forsale>
 
-    </ng-template>
-</div>
-<div id="bottom" class="space-navbar" style="width: 100%; height: 600px; background-color: #afa;">
-    <p>fill footer</p>
+        </ng-template>
+    </div>
+    <div id="bottom" class="space-navbar" style="width: 100%; height: 600px; background-color: #afa;">
+        <p>fill footer</p>
+    </div>
 </div>
