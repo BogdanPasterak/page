@@ -25,3 +25,11 @@
         height: 240px;
     }
 }
+
+@media (max-width: 768px) {
+    .myrow {
+        width: 33.3%;
+        display: inline-flex;
+        justify-content: center;
+    }
+}
