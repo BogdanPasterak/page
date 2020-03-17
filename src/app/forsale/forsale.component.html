@@ -1,1 +1,8 @@
-<br><br><br><br><br> Bogdan
+<div class="space-navbar">
+    <h2>Car parts for sale</h2>
+    <ul class="parts">
+        <li *ngFor="let part of parts">
+            <app-for-sale-part [part]=part></app-for-sale-part>
+        </li>
+    </ul>
+</div>

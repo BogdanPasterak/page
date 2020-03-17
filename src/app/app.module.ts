@@ -13,7 +13,8 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { CarComponent } from './car/car.component';
 import { ContactComponent } from './contact/contact.component';
-import { LielementComponent } from './lielement/lielement.component'
+import { LielementComponent } from './lielement/lielement.component';
+import { ForSalePartComponent } from './for-sale-part/for-sale-part.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { LielementComponent } from './lielement/lielement.component'
     HomeComponent,
     CarComponent,
     ContactComponent,
-    LielementComponent
+    LielementComponent,
+    ForSalePartComponent
   ],
   imports: [
     BrowserModule,

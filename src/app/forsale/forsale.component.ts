@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Part } from '../part';
+import { PartsService } from '../parts.service';
+
 
 @Component({
   selector: 'app-forsale',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForsaleComponent implements OnInit {
 
-  constructor() { }
+  parts: Part[];
+
+  constructor(private partsService: PartsService) { }
 
   ngOnInit(): void {
+    this.getParts();
+  }
+
+  getParts(): void {
+    this.partsService.getParts()
+      .subscribe(parts => this.parts = parts);
   }
 
 }
