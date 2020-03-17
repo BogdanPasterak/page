@@ -11,11 +11,21 @@ import { PartsService } from '../parts.service';
 export class ForsaleComponent implements OnInit {
 
   parts: Part[];
+  selectedPart: Part;
 
   constructor(private partsService: PartsService) { }
 
   ngOnInit(): void {
     this.getParts();
+  }
+
+  onSelectPart(part: Part): void {
+    this.selectedPart = part;
+    console.log(part);
+  }
+
+  getSelectedPart(): Part {
+    return this.selectedPart;
   }
 
   getParts(): void {

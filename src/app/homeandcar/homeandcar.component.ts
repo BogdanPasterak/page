@@ -17,7 +17,6 @@ export class HomeandcarComponent implements OnInit {
 
 
   receiveMsg($event) {
-    console.log('recidive', $event)
     this.section = $event;
     if ($event == "forsale")
       this.mainpage = false;
