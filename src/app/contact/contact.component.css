@@ -1,33 +1,67 @@
-@media (max-width: 660px) {
+.myrow:nth-child(2n) {
+    background-color: rgba(255, 238, 0, 0.2);
+    padding: 15px 0;
+}
+
+.myrow h4 {
+    margin: 5px 0 3px;
+    font-weight: bold;
+}
+
+.myrow p {
+    margin: 0;
+}
+
+#mapcontainer {
+    padding: 0;
+    margin: auto;
+}
+
+@media (max-width: 620px) {
     #map {
         width: 500px;
         height: 375px;
     }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 520px) {
     #map {
         width: 400px;
         height: 300px;
     }
 }
 
-@media (max-width: 440px) {
+@media (max-width: 420px) {
     #map {
         width: 350px;
         height: 270px;
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 370px) {
     #map {
         width: 300px;
         height: 240px;
     }
 }
 
+@media (max-width: 330px) {
+    #map {
+        width: 276px;
+        height: 230px;
+    }
+}
+
+@media (max-width: 300px) {
+    #map {
+        width: 260px;
+        height: 220px;
+    }
+}
+
 @media (max-width: 768px) {
     .myrow {
+        margin: 0;
         width: 33.3%;
         display: inline-flex;
         justify-content: center;
