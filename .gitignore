@@ -46,5 +46,4 @@ testem.log
 Thumbs.db
 
 # Enviroment data
-environment.prod.ts
-environment.ts
+**/environments
