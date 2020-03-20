@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Part } from '../part';
 import { PartsService } from '../parts.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { PartsService } from '../parts.service';
 })
 export class ForsaleComponent implements OnInit {
 
-  parts: Part[];
+  parts: Observable<Part[]>;
   selectedPart: Part;
 
   constructor(private partsService: PartsService) { }
@@ -29,8 +30,8 @@ export class ForsaleComponent implements OnInit {
   }
 
   getParts(): void {
-    this.partsService.getParts()
-      .subscribe(parts => this.parts = parts);
+    this.parts = this.partsService.getParts();
+    
   }
 
 }
