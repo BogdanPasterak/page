@@ -1,0 +1,24 @@
+<h2>Create Part</h2>
+<div class="create-part" [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" minlength="3" id="name" required class="form-control" [(ngModel)]="part.name" name="name" #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                Name must be at least 3 characters long.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" min="1" max="100" id="quantity" required class="form-control" [(ngModel)]="part.quantity" name="quantity" #quantity="ngModel" (change)="log(quantity)">
+        </div>
+
+        <button *ngIf="name.valid && quantity.valid" type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+    <h4>Submitted succesfully</h4>
+    <button class="btn byn-succes" (click)="newPart()">Add</button>
+</div>

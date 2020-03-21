@@ -19,6 +19,7 @@ import { ContactComponent } from './contact/contact.component';
 import { LielementComponent } from './lielement/lielement.component';
 import { ForSalePartComponent } from './for-sale-part/for-sale-part.component'
 import { environment } from 'src/environments/environment';
+import { CreatePartComponent } from './create-part/create-part.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { environment } from 'src/environments/environment';
     CarComponent,
     ContactComponent,
     LielementComponent,
-    ForSalePartComponent
+    ForSalePartComponent,
+    CreatePartComponent
   ],
   imports: [
     BrowserModule,

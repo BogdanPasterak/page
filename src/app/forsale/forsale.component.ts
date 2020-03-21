@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Part } from '../part';
 import { PartsService } from '../parts.service';
+import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 
 
@@ -11,14 +12,27 @@ import { Observable } from 'rxjs';
 })
 export class ForsaleComponent implements OnInit {
 
-  parts: Observable<Part[]>;
+  parts: any;
   selectedPart: Part;
 
   constructor(private partsService: PartsService) { }
 
   ngOnInit(): void {
-    this.getParts();
+    this.getPartsList();
   }
+
+  getPartsList(): void {
+    this.partsService.getPartsList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(parts => {this.parts = parts})
+    
+  }
+
+
 
   onSelectPart(part: Part): void {
     this.selectedPart = part;
@@ -27,11 +41,6 @@ export class ForsaleComponent implements OnInit {
 
   getSelectedPart(): Part {
     return this.selectedPart;
-  }
-
-  getParts(): void {
-    this.parts = this.partsService.getParts();
-    
   }
 
 }

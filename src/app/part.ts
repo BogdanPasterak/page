@@ -1,5 +1,5 @@
-export interface Part {
-    id: number;
+export class Part {
+    key: string;
     name: string;
     quantity: number;
     price: number;
