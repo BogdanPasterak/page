@@ -2,16 +2,8 @@
     <h2 class="row">Car parts for sale</h2>
     <div class="row">
         <div class="col-sm-6" *ngFor="let part of parts | async">
-            <app-for-sale-part [part]=part (click)="onSelectPart(part)">
+            <app-for-sale-part [part]='part' (click)="onSelectPart(part)">
             </app-for-sale-part>
         </div>
     </div>
-    <!-- <ul class="parts">
-        <li *ngFor="let part of parts | async">
-            {{part.name}}
-
-            <app-for-sale-part [part]=part (click)="onSelectPart(part)">
-            </app-for-sale-part>
-        </li>
-    </ul> -->
 </div>
