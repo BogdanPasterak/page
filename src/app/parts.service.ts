@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database'
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable, of } from 'rxjs';
 import { Part } from './part';
 import { PARTS } from './mock-parts';
@@ -18,7 +19,6 @@ export class PartsService {
   ref: firebase.database.Reference;
 
   partsRef: AngularFireList<Part> = null;
-  part: Part = { key: "10", name: 'Glasses', quantity: 2, price: 3.75, description:'My glasses', image: 'assets/img/img-parts/glasses.jpg'};
 
   constructor(db: AngularFireDatabase) {
       this.partsRef = db.list('parts');

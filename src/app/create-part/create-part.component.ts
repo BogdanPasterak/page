@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule, NgModel, FormGroup, FormControl } from '@angular/forms';
 import { Part } from '../part';
 import { PartsService } from '../parts.service'
 
@@ -9,6 +9,14 @@ import { PartsService } from '../parts.service'
   styleUrls: ['./create-part.component.css']
 })
 export class CreatePartComponent implements OnInit {
+
+  formTemplate = new FormGroup({
+    name: new FormControl(''),
+    quantity: new FormControl(1),
+    price: new FormControl(0.99),
+    description: new FormControl(''),
+    image: new FormControl('')
+  })
 
   part: Part = this.createNewPart();
   submitted = false;
