@@ -1,28 +1,31 @@
 <div class="create-part card" [hidden]="submitted">
-    <form [formGroup]="formTemplate" (ngSubmit)="onSubmit()" class="card-body">
+    <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)" class="card-body">
         <br><br>
         <h2>Create Part</h2>
 
         <div class="form-group">
-            <label>Image</label>
-            <input type="file" class="form-control" formControlName="image">
+            <input minlength="3" required class="form-control" formControlName="name" placeholder="Name / Title">
+            <div class="text-danger" *ngIf="fC.name.invalid && fC.name.touched">Name must be at least 3 characters long.</div>
         </div>
 
+        <div class="row text-center">
+            <img [src]="imgSrc" alt="photo" (click)="fileUploader.click()">
+            <!-- (dragover)="onDragOver($event)" (drop)="onDrop($event)" -->
+        </div>
         <div class="form-group">
-            <input minlength="3" required class="form-control" formControlName="name" placeholder="Name / Title">
-            <div *ngIf="false" class="alert alert-danger">
-                Name must be at least 3 characters long.
-            </div>
+            <input type="file" accept="image/*" class="form-control" formControlName="image" #fileUploader (change)="showPreview($event)">
         </div>
 
         <div class="form-group">
             <label>Quantity</label>
             <input type="number" min="1" max="100" class="form-control" formControlName="quantity">
+            <div class="text-danger" *ngIf="fC.quantity.invalid">Quantity must be up to 100</div>
         </div>
 
         <div class="form-group">
             <label>Price</label>
             <input type="number" min="0.01" max="100000" step="0.01" class="form-control" formControlName="price">
+            <div class="text-danger" *ngIf="fC.price.invalid && fC.price.touched">Type correct value</div>
         </div>
 
         <div class="form-group">
