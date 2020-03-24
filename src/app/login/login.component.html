@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="card" *ngIf="(afAuth.user | async) as user; else loginPanel">
+    <div class="card-body">
+        <h3 class="card-title">{{ user.email }}</h3>
+    </div>
+</div>
+<ng-template #loginPanel>
+    <div class="card">
+        <div class="card-body">
+            <label for="email">Email </label>
+            <input name="email" [(ngModel)]="user.email">
+            <label for="password"> Password </label>
+            <input name="password" type="password" [(ngModel)]="user.password">
+            <button class="btn" (click)="register()">Register</button>
+        </div>
+    </div>
+</ng-template>
