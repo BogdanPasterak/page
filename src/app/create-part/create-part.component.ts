@@ -12,26 +12,28 @@ import { finalize } from 'rxjs/operators';
 })
 export class CreatePartComponent implements OnInit {
 
-  imgSrc: string = '/assets/img/camera.svg';
+  imgSrc: string;
   selectedImg: any = null;
-  isSubmited: boolean = false;
+  display: boolean;
+  submitted: boolean;
+  part: Part = this.createNewPart();
 
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.minLength(3)),
     quantity: new FormControl(1, [Validators.max(100), Validators.min(1)]),
-    price: new FormControl(0.00, [Validators.max(10000), Validators.min(0.10)]),
+    price: new FormControl(null, [Validators.max(10000), Validators.min(0.10),Validators.required]),
     description: new FormControl(''),
-    image: new FormControl('')
+    image: new FormControl('', Validators.required)
   })
 
-  part: Part = this.createNewPart();
-  submitted = false;
 
   constructor(private partsService: PartsService, private storage: AngularFireStorage) { }
 
   ngOnInit(): void {
     this.resetForm();
   }
+
+
   onDragOver(event: any) {
     event.preventDefault();
   }
@@ -45,7 +47,7 @@ export class CreatePartComponent implements OnInit {
 
   showPreview(event: any) {
     this.show(event.target.files, event.target.files[0] as File)
-    console.log("showPreview", event.target.files[0]);
+    // console.log("showPreview", event.target.files[0]);
   }
 
   show(files:any, firstFile: File) {
@@ -54,7 +56,7 @@ export class CreatePartComponent implements OnInit {
       reader.onload = (e:any) => {this.imgSrc = e.target.result};
       reader.readAsDataURL(firstFile);
       this.selectedImg = firstFile;
-      console.log("Value", this.formTemplate.controls.image.value);
+      // console.log("Value", this.formTemplate.controls.image.value);
     } else {
       this.imgSrc = '/assets/img/camera.svg';
       this.selectedImg = null;
@@ -63,7 +65,6 @@ export class CreatePartComponent implements OnInit {
   }
 
   newPart(): void {
-    this.submitted = false;
     this.part = this.createNewPart();
   }
 
@@ -72,28 +73,43 @@ export class CreatePartComponent implements OnInit {
   }
 
   onSubmit(formValue) {
-    this.isSubmited = true;
 
     if (this.formTemplate.valid){
-      let filePath =`imagesForSale/${this.selectedImg.name}_${new Date().getTime()}`;
+      let filePath =`imagesForSale/${this.selectedImg.name.split('.').slice(0,-1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
 
       this.storage.upload(filePath, this.selectedImg).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
-            formValue['image']=url;
+            formValue['image'] = url;
+            this.partsService.createPart(formValue as Part);
             this.resetForm();
           })
         })
       ).subscribe();
-      // this.submitted = true;
-      // this.partsService.createPart(this.part);
-      // this.part = this.createNewPart();
+    } else {
+      alert("Invalid form");
+      this.submitted = true;
     }
   }
 
-  resetForm() {
+  openForm() {
+    this.display = true;
+  }
 
+  resetForm() {
+    this.submitted = false;
+    this.display = false;
+    this.imgSrc = '/assets/img/camera.svg';
+    this.selectedImg = null; 
+    this.formTemplate.reset();
+    this.formTemplate.setValue({
+      name: '',
+      quantity: 1,
+      price: null,
+      description: '',
+      image: ''
+    });
   }
 
   createNewPart() : Part {

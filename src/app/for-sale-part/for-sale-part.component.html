@@ -1,7 +1,10 @@
 <div class="card">
-    <h3 class="card-title">{{ part.key }}. {{ part.name }}</h3>
+    <h3 class="card-title text-center">{{ part.name }}</h3>
     <img [src]='part.image' alt="image" class="card-img">
+    <div>
+        <span>Price: <b>&euro; {{ part.price }}</b></span>
+        <span class="right">Quantity: <b>{{ part.quantity }}</b> pcs</span>
+    </div>
+
     <p class="card-text">{{ part.description }}</p>
-    <p>Price: <b>&euro; {{ part.price }}</b></p>
-    <p>Quantity: <b>{{ part.quantity }}</b> pcs</p>
 </div>

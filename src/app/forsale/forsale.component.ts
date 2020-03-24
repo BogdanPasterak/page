@@ -19,6 +19,7 @@ export class ForsaleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPartsList();
+    // this.parts = [{ key: "12", name: 'Mug', quantity: 10, price: 1.99, description:'My mug with coffe inside, very hot', image: 'assets/img/img-parts/mug.jpg'}];
   }
 
   getPartsList(): void {
@@ -28,10 +29,8 @@ export class ForsaleComponent implements OnInit {
           ({key: c.payload.key, ...c.payload.val() })
         )
       )
-    ).subscribe(parts => {this.parts = parts})
-    
+    ).subscribe(parts => {this.parts = parts});
   }
-
 
 
   onSelectPart(part: Part): void {
