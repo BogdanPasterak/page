@@ -14,7 +14,7 @@ export class ForSalePartComponent implements OnInit {
   constructor(private partsService: PartsService) { }
 
   ngOnInit(): void {
-    console.log(this.part);
+    // console.log(this.part);
   }
   
 

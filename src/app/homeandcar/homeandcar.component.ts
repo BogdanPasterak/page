@@ -9,6 +9,7 @@ export class HomeandcarComponent implements OnInit {
 
   section: string = 'myPage';
   mainpage: boolean = true;
+  login: boolean = false;
 
   constructor() { }
 
@@ -16,12 +17,20 @@ export class HomeandcarComponent implements OnInit {
   }
 
 
-  receiveMsg($event) {
-    this.section = $event;
-    if ($event == "forsale")
-      this.mainpage = false;
-    else
-      this.mainpage = true;
-  }
+  receiveMsg(event:string) {
+    console.log(event);
+    if (event == "login") {
+      this.login = true;
+    }
+    else {
+      this.section = event;
+      this.login = false;
+      if (event == "forsale") {
+        this.mainpage = false;
+      }
+      else
+        this.mainpage = true;
+      }
+    }
 
 }
