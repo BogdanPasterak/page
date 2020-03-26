@@ -58,7 +58,7 @@ export class CreatePartComponent implements OnInit {
       this.selectedImg = firstFile;
       // console.log("Value", this.formTemplate.controls.image.value);
     } else {
-      this.imgSrc = '/assets/img/camera.svg';
+      this.imgSrc = 'assets/img/camera.svg';
       this.selectedImg = null;
     }
 
@@ -96,7 +96,7 @@ export class CreatePartComponent implements OnInit {
 
   resetForm() {
     this.submitted = false;
-    this.imgSrc = '/assets/img/camera.svg';
+    this.imgSrc = 'assets/img/camera.svg';
     this.selectedImg = null; 
     this.formTemplate.reset();
     this.formTemplate.setValue({
