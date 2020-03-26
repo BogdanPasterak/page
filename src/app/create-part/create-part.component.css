@@ -5,3 +5,13 @@
 img {
     width: 60%;
 }
+
+.plr20 {
+    padding-left: 10px;
+    padding-right: 0;
+}
+
+.prl20 {
+    padding-left: 0;
+    padding-right: 10px;
+}

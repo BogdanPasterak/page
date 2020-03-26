@@ -14,15 +14,15 @@
                 </div>
             </div>
         </div>
-        <app-create-part [hidden]="!newItem"></app-create-part>
+        <app-create-part [hidden]="!newItem" (msgEvent)="receiveMsg($event)"></app-create-part>
         <div [hidden]="!form">
             <h3>Adding Administrator</h3>
             <div class="card-body">
-                <div class="row">
+                <div class="row form-group mb-1">
                     <label class="col-xs-4 col-sm-2">Email </label>
                     <input name="email" [(ngModel)]="newUser.email" class="col-xs-7 col-sm-5">
                 </div>
-                <div class="row">
+                <div class="row form-group mb-1">
                     <label class="col-xs-4 col-sm-2"> Password </label>
                     <input name="password" type="password" [(ngModel)]="newUser.password" class="col-xs-7 col-sm-5">
                 </div>
@@ -40,11 +40,11 @@
     <ng-template #loginPanel>
         <div class="space-navbar" *ngIf="data">
             <h2>Loggin as Administrator</h2>
-            <div class="row">
+            <div class="row form-group mb-1">
                 <label class="col-xs-4 col-sm-2">Email </label>
                 <input name="email" [(ngModel)]="loggedUser.email" class="col-xs-7 col-sm-5">
             </div>
-            <div class="row">
+            <div class="row form-group mb-1">
                 <label class="col-xs-4 col-sm-2"> Password </label>
                 <input name="password" type="password" [(ngModel)]="loggedUser.password" class="col-xs-7 col-sm-5">
             </div>

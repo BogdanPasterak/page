@@ -1,14 +1,9 @@
-<div [hidden]="display">
-    <button class="btn btn-success" (click)="openForm()">Add new part for sale</button>
-</div>
-
-<div class="create-part card" [hidden]="!display">
-    <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)" class="card-body">
-        <br><br>
+<div class="create-part row">
+    <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
         <h2>Create Part for Sale</h2>
 
         <div class="form-group">
-            <input minlength="3" required class="form-control" formControlName="name" placeholder="Name / Title">
+            <input minlength="3" required class="form-control input-lg" formControlName="name" placeholder="Name / Title">
             <div class="text-danger" *ngIf="fC.name.invalid && submitted">Name must be at least 3 characters long.</div>
         </div>
 
@@ -18,19 +13,27 @@
         </div>
         <div class="form-group">
             <input type="file" accept="image/*" class="form-control" formControlName="image" #fileUploader (change)="showPreview($event)">
-            <div class="text-danger" *ngIf="fC.image.invalid && fC.image.touched">Quantity must be up to 100</div>
+            <div class="text-danger" *ngIf="fC.image.invalid && fC.image.touched">Select photo file</div>
         </div>
 
-        <div class="form-group">
-            <label>Quantity</label>
-            <input type="number" min="1" max="100" class="form-control" formControlName="quantity">
-            <div class="text-danger" *ngIf="fC.quantity.invalid">Quantity must be up to 100</div>
+        <div class="form-group col-sm-6">
+            <div class="form-row">
+                <label class="col-xs-3 col-form-label prl20">Quantity</label>
+                <div class="col-xs-9 plr20">
+                    <input type="number" min="1" max="100" class="form-control plr20" formControlName="quantity">
+                </div>
+                <div class="text-danger" *ngIf="fC.quantity.invalid">Quantity must be up to 100</div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label>Price</label>
-            <input type="number" min="0.01" max="100000" step="0.01" class="form-control" formControlName="price">
-            <div class="text-danger" *ngIf="fC.price.invalid && submitted">Type correct value</div>
+        <div class="form-group col-sm-6">
+            <div class="form-row">
+                <label class="col-xs-3 col-form-label prl20">Price</label>
+                <div class="col-xs-9 plr20">
+                    <input type="number" min="0.01" max="100000" step="0.01" class="form-control plr20" formControlName="price">
+                </div>
+                <div class="text-danger" *ngIf="fC.price.invalid && submitted">Type correct value</div>
+            </div>
         </div>
 
         <div class="form-group">
@@ -38,7 +41,13 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <div class="col-xs-6">
+                <button type="submit" class="btn btn-danger btn-block">Submit</button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-success btn-block" (click)="cancel()">Cancel</button>
+            </div>
         </div>
+
     </form>
 </div>

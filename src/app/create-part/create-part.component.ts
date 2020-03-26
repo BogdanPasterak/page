@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormsModule, NgModel, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Part } from '../part';
 import { PartsService } from '../parts.service'
@@ -14,7 +14,6 @@ export class CreatePartComponent implements OnInit {
 
   imgSrc: string;
   selectedImg: any = null;
-  display: boolean;
   submitted: boolean;
   part: Part = this.createNewPart();
 
@@ -33,6 +32,7 @@ export class CreatePartComponent implements OnInit {
     this.resetForm();
   }
 
+  @Output() msgEvent = new EventEmitter<string>();
 
   onDragOver(event: any) {
     event.preventDefault();
@@ -88,18 +88,14 @@ export class CreatePartComponent implements OnInit {
         })
       ).subscribe();
     } else {
-      alert("Invalid form");
+      // alert("Invalid form");
       this.submitted = true;
     }
   }
 
-  openForm() {
-    this.display = true;
-  }
 
   resetForm() {
     this.submitted = false;
-    this.display = false;
     this.imgSrc = '/assets/img/camera.svg';
     this.selectedImg = null; 
     this.formTemplate.reset();
@@ -116,6 +112,10 @@ export class CreatePartComponent implements OnInit {
     let newPart: Part = new Part(); 
     newPart.quantity = 1;
     return newPart;
+  }
+
+  cancel() {
+    this.msgEvent.emit("cancel");
   }
 
   get fC() {

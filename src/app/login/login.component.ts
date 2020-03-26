@@ -49,6 +49,12 @@ export class LoginComponent implements OnInit {
     this.messageEvent.emit('forsale');
   }
 
+  receiveMsg($event) {
+    if ($event == "cancel"){
+      this.newItem = false;
+    }
+  }
+
   cancel() {
     this.messageEvent.emit('forsale');
   }
