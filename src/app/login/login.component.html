@@ -1,23 +1,44 @@
 <div class="login">
     <div class="card space-navbar" *ngIf="(afAuth.user | async) as user; else loginPanel">
-        <div class="card-body">
-            <h3 class="card-title">{{ loggedUser.email }}</h3>
-            <button class="btn btn-success" (click)="logout()">Logout</button>
-            <button class="btn btn-warning" (click)="loginForm()">Add new admin</button>
-        </div>
-        <div class="card" [hidden]="!form">
-            <div class="card-body">
-                <label for="email">Email </label>
-                <input name="email" [(ngModel)]="newUser.email">
-                <label for="password"> Password </label>
-                <input name="password" type="password" [(ngModel)]="newUser.password">
-                <button class="btn btn-danger" (click)="register()">Create new acount</button>
+        <div class="row">
+            <h4 class="col-xs-12 text-center">Welcome <b>{{user.email}}</b></h4>
+            <div class="row">
+                <div class="col-xs-4 less">
+                    <button class="btn btn-success btn-block" (click)="logout()">Logout</button>
+                </div>
+                <div class="col-xs-4 less">
+                    <button class="btn btn-primary btn-block" (click)="addNewItem()">Add item</button>
+                </div>
+                <div class="col-xs-4 less">
+                    <button class="btn btn-warning btn-block" (click)="loginForm()">Add new admin</button>
+                </div>
             </div>
         </div>
-
+        <app-create-part [hidden]="!newItem"></app-create-part>
+        <div [hidden]="!form">
+            <h3>Adding Administrator</h3>
+            <div class="card-body">
+                <div class="row">
+                    <label class="col-xs-4 col-sm-2">Email </label>
+                    <input name="email" [(ngModel)]="newUser.email" class="col-xs-7 col-sm-5">
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 col-sm-2"> Password </label>
+                    <input name="password" type="password" [(ngModel)]="newUser.password" class="col-xs-7 col-sm-5">
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button class="btn btn-danger btn-block" (click)="register()">Create new acount</button>
+                    </div>
+                    <div class="col-xs-6">
+                        <button class="btn btn-success btn-block" (click)="cancelNewAdmin()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <ng-template #loginPanel>
-        <div class="space-navbar container" *ngIf="data">
+        <div class="space-navbar" *ngIf="data">
             <h2>Loggin as Administrator</h2>
             <div class="row">
                 <label class="col-xs-4 col-sm-2">Email </label>

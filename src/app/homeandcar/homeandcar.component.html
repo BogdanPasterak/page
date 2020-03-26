@@ -16,7 +16,6 @@
         <div [hidden]="login">
 
             <app-login id="login" (messageEvent)="receiveMsg($event)" [data]="data"></app-login>
-            <app-create-part *ngIf="(afAuth.user | async)"></app-create-part>
             <app-forsale id="forsale"></app-forsale>
         </div>
 

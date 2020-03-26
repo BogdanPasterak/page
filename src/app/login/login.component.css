@@ -1,3 +1,15 @@
 .login {
     min-height: 2px;
 }
+
+.less {
+    padding: 0 4px;
+}
+
+.less:first-of-type {
+    padding-left: 14px;
+}
+
+.less:last-of-type {
+    padding-right: 8px;
+}

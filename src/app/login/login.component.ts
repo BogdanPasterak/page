@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   loggedUser: User;
   newUser: User;
   form: boolean;
+  newItem: boolean;
 
   @Input() data : any;
 
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     this.loggedUser = new User();
     this.newUser = new User();
     this.form = false;
+    this.newItem = false;
   }
 
   @Output() messageEvent = new EventEmitter<string>();
@@ -51,8 +53,16 @@ export class LoginComponent implements OnInit {
     this.messageEvent.emit('forsale');
   }
 
+  cancelNewAdmin() {
+    this.form = false;
+  }
+
   loginForm() {
     this.form = true;
+  }
+
+  addNewItem() {
+    this.newItem = true;
   }
 
 }
