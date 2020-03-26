@@ -8,7 +8,7 @@ import { User } from "../user";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: User;
+  loggedUser: User;
   newUser: User;
   form: boolean;
 
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
-    this.user = new User();
+    this.loggedUser = new User();
     this.newUser = new User();
     this.form = false;
   }
@@ -32,16 +32,22 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
-    const user = await this.afAuth.auth.signInWithEmailAndPassword(
-      this.user.email,
-      this.user.password
-    );
-    
-    console.log(user);
+    this.afAuth.auth.signInWithEmailAndPassword(
+      this.loggedUser.email,
+      this.loggedUser.password
+    ).then(res =>{
+      this.loggedUser.password = "";
+    }).catch(err => {
+      console.log(err.message);
+    })
   }
 
   async logout() {
     await this.afAuth.auth.signOut();
+    this.messageEvent.emit('forsale');
+  }
+
+  cancel() {
     this.messageEvent.emit('forsale');
   }
 

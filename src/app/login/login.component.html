@@ -1,7 +1,7 @@
 <div class="login">
     <div class="card space-navbar" *ngIf="(afAuth.user | async) as user; else loginPanel">
         <div class="card-body">
-            <h3 class="card-title">{{ user.email }}</h3>
+            <h3 class="card-title">{{ loggedUser.email }}</h3>
             <button class="btn btn-success" (click)="logout()">Logout</button>
             <button class="btn btn-warning" (click)="loginForm()">Add new admin</button>
         </div>
@@ -17,13 +17,23 @@
 
     </div>
     <ng-template #loginPanel>
-        <div class="card space-navbar" *ngIf="data">
-            <div class="card-body">
-                <label for="email">Email </label>
-                <input name="email" [(ngModel)]="user.email">
-                <label for="password"> Password </label>
-                <input name="password" type="password" [(ngModel)]="user.password">
-                <button class="btn btn-primary" (click)="login()">Login</button>
+        <div class="space-navbar container" *ngIf="data">
+            <h2>Loggin as Administrator</h2>
+            <div class="row">
+                <label class="col-xs-4 col-sm-2">Email </label>
+                <input name="email" [(ngModel)]="loggedUser.email" class="col-xs-7 col-sm-5">
+            </div>
+            <div class="row">
+                <label class="col-xs-4 col-sm-2"> Password </label>
+                <input name="password" type="password" [(ngModel)]="loggedUser.password" class="col-xs-7 col-sm-5">
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <button class="btn btn-primary btn-block" (click)="login()">Login</button>
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-success btn-block" (click)="cancel()">Cancel</button>
+                </div>
             </div>
         </div>
     </ng-template>
