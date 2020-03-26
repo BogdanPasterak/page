@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from "@angular/fire/auth";
+import { User } from "../user";
+import { first, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-homeandcar',
@@ -7,30 +10,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeandcarComponent implements OnInit {
 
+  us: string;
   section: string = 'myPage';
   mainpage: boolean = true;
   login: boolean = false;
+  data: any;
 
-  constructor() { }
+  constructor(public afAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
+    // this.doS();
   }
 
+  async doS() {
+    this.isLog().pipe(
+      tap(u => {
+        this.us = (u) ? u.email : "nikt";
+        console.log(this.us);
+      })
+    ).subscribe()
+  }
+
+  isLog() {
+    return this.afAuth.authState.pipe(first());
+  }
 
   receiveMsg(event:string) {
-    console.log(event);
-    if (event == "login") {
-      this.login = true;
+    //console.log(event);
+    this.section = event;
+    this.login = false;
+    if (event == "forsale" || event == "login") {
+      this.mainpage = false;
+      this.data = (event == "login") ? "login" : null;
     }
-    else {
-      this.section = event;
-      this.login = false;
-      if (event == "forsale") {
-        this.mainpage = false;
-      }
-      else
-        this.mainpage = true;
-      }
+    else
+      this.mainpage = true;
     }
 
 }

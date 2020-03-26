@@ -1,16 +1,30 @@
-<div class="card" *ngIf="(afAuth.user | async) as user; else loginPanel">
-    <div class="card-body">
-        <h3 class="card-title">{{ user.email }}</h3>
-    </div>
-</div>
-<ng-template #loginPanel>
-    <div class="card">
+<div class="login">
+    <div class="card space-navbar" *ngIf="(afAuth.user | async) as user; else loginPanel">
         <div class="card-body">
-            <label for="email">Email </label>
-            <input name="email" [(ngModel)]="user.email">
-            <label for="password"> Password </label>
-            <input name="password" type="password" [(ngModel)]="user.password">
-            <button class="btn" (click)="register()">Register</button>
+            <h3 class="card-title">{{ user.email }}</h3>
+            <button class="btn btn-success" (click)="logout()">Logout</button>
+            <button class="btn btn-warning" (click)="loginForm()">Add new admin</button>
         </div>
+        <div class="card" [hidden]="!form">
+            <div class="card-body">
+                <label for="email">Email </label>
+                <input name="email" [(ngModel)]="newUser.email">
+                <label for="password"> Password </label>
+                <input name="password" type="password" [(ngModel)]="newUser.password">
+                <button class="btn btn-danger" (click)="register()">Create new acount</button>
+            </div>
+        </div>
+
     </div>
-</ng-template>
+    <ng-template #loginPanel>
+        <div class="card space-navbar" *ngIf="data">
+            <div class="card-body">
+                <label for="email">Email </label>
+                <input name="email" [(ngModel)]="user.email">
+                <label for="password"> Password </label>
+                <input name="password" type="password" [(ngModel)]="user.password">
+                <button class="btn btn-primary" (click)="login()">Login</button>
+            </div>
+        </div>
+    </ng-template>
+</div>

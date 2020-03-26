@@ -2,6 +2,8 @@
 <div class="homeandcar">
     <div *ngIf="mainpage; else salepage" [hidden]="login">
         <app-header></app-header>
+        <!-- <p *ngIf="(afAuth.user | async) as user; else nikt">{{user.email}}</p> -->
+        <ng-template #nikt>Nikt</ng-template>
         <app-about id="about"></app-about>
 
         <app-home id="home"></app-home>
@@ -10,17 +12,15 @@
         <app-contact id="contact"></app-contact>
         <div class="content" role="main"></div>
     </div>
-    <div [hidden]="login">
-        <ng-template #salepage class="space-navbar">
+    <ng-template #salepage class="space-navbar">
+        <div [hidden]="login">
 
-            <app-create-part id="forsale"></app-create-part>
-            <app-forsale></app-forsale>
+            <app-login id="login" (messageEvent)="receiveMsg($event)" [data]="data"></app-login>
+            <app-create-part *ngIf="(afAuth.user | async)"></app-create-part>
+            <app-forsale id="forsale"></app-forsale>
+        </div>
 
-        </ng-template>
-    </div>
-    <div id="login" [hidden]="!login" class="space-navbar">
-        <app-login></app-login>
-    </div>
+    </ng-template>
     <div id="bottom" class="space-navbar" style="width: 100%; height: 600px; background-color: #afa;">
         <p>fill footer</p>
     </div>
