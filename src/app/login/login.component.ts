@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit {
   receiveMsg($event) {
     if ($event == "cancel"){
       this.newItem = false;
+    } else if ($event == "submitted") {
+      this.newItem = false;
     }
   }
 

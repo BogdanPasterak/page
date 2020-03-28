@@ -7,4 +7,14 @@
     </div>
 
     <p class="card-text">{{ part.description }}</p>
+    <div *ngIf="(afAuth.user | async)">
+        <div class="row">
+            <div class="col-xs-6">
+                <button class="btn btn-success btn-block" (click)="editItem()">Edit</button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-danger btn-block" (click)="deleteItem()">Delete</button>
+            </div>
+        </div>
+    </div>
 </div>

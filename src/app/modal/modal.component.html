@@ -1,0 +1,18 @@
+<div id="modal-content-wrapper">
+    <header id="modal-header">
+        <h3 mat-dialog-title>Are you sure you want to delete &quot;{{data.name}}&quot; ?</h3>
+    </header>
+    <section id="modal-body">
+        <p>You will not recover deleted data</p>
+    </section>
+    <footer mat-dialog-actions>
+        <div class="row">
+            <div class="col-xs-6">
+                <button class="btn btn-success btn-block" (click)="onClick()" cdkFocusInitial>Cancel</button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-danger btn-block" [mat-dialog-close]="delete">Delete</button>
+            </div>
+        </div>
+    </footer>
+</div>

@@ -35,7 +35,7 @@ export class ForsaleComponent implements OnInit {
 
   onSelectPart(part: Part): void {
     this.selectedPart = part;
-    console.log(part);
+    // console.log(part);
   }
 
   getSelectedPart(): Part {

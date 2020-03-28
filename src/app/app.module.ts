@@ -23,6 +23,12 @@ import { ForSalePartComponent } from './for-sale-part/for-sale-part.component'
 import { environment } from 'src/environments/environment';
 import { CreatePartComponent } from './create-part/create-part.component';
 import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ModalComponent as ModalComponent } from './modal/modal.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditPartComponent } from './edit-part/edit-part.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +43,9 @@ import { LoginComponent } from './login/login.component';
     LielementComponent,
     ForSalePartComponent,
     CreatePartComponent,
-    LoginComponent
+    LoginComponent,
+    ModalComponent,
+    EditPartComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +56,13 @@ import { LoginComponent } from './login/login.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponent]
 })
 export class AppModule { }

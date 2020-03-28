@@ -84,6 +84,7 @@ export class CreatePartComponent implements OnInit {
             formValue['image'] = url;
             this.partsService.createPart(formValue as Part);
             this.resetForm();
+            this.msgEvent.emit("submitted");
           })
         })
       ).subscribe();
