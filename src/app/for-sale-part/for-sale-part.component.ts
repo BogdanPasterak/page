@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Part } from '../part';
 import { PartsService } from '../parts.service';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -13,6 +13,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class ForSalePartComponent implements OnInit {
 
   @Input() part: Part;
+  @Output() msgEvent = new EventEmitter<Part>();
 
   constructor(private partsService: PartsService, public afAuth: AngularFireAuth, public dialog: MatDialog) { }
 
@@ -36,7 +37,7 @@ export class ForSalePartComponent implements OnInit {
   }
 
   editItem() {
-    console.log("edit");
+    this.msgEvent.emit(this.part)
   }
 
 

@@ -14,11 +14,13 @@ export class ForsaleComponent implements OnInit {
 
   parts: any;
   selectedPart: Part;
+  editedPart: Part;
 
   constructor(private partsService: PartsService) { }
 
   ngOnInit(): void {
     this.getPartsList();
+    this.editedPart = null;
     // this.parts = [{ key: "12", name: 'Mug', quantity: 10, price: 1.99, description:'My mug with coffe inside, very hot', image: 'assets/img/img-parts/mug.jpg'}];
   }
 
@@ -40,6 +42,17 @@ export class ForsaleComponent implements OnInit {
 
   getSelectedPart(): Part {
     return this.selectedPart;
+  }
+
+  receiveMsg($event) {
+    if (typeof $event == "string") {
+      if ($event == "cancel") {
+        this.editedPart = null;
+      }
+    } else if (typeof $event == "object") {
+      this.editedPart = $event as Part;
+    }
+    //  console.log(typeof $event)
   }
 
 }

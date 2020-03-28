@@ -1,8 +1,9 @@
 <div class="space-navbar">
+    <app-edit-part *ngIf="(editedPart)" [part]="editedPart" (msgEvent)="receiveMsg($event)"></app-edit-part>
     <h2 class="row">Car parts for sale</h2>
     <div class="row">
         <div class="col-sm-6" *ngFor="let part of parts">
-            <app-for-sale-part [part]='part' (click)="onSelectPart(part)">
+            <app-for-sale-part [part]='part' (click)="onSelectPart(part)" (msgEvent)="receiveMsg($event)">
             </app-for-sale-part>
         </div>
     </div>
