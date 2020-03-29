@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Part } from '../part';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PartsService } from '../parts.service';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-part',
@@ -9,9 +12,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class EditPartComponent implements OnInit {
 
-  imgSrc: string;
+  imgSrc: string ='';
   selectedImg: any = null;
-  submitted: boolean;
+  submitted: boolean = false;
 
 
   formTemplate = new FormGroup({
@@ -19,16 +22,39 @@ export class EditPartComponent implements OnInit {
     quantity: new FormControl(1, [Validators.max(100), Validators.min(1)]),
     price: new FormControl(null, [Validators.max(10000), Validators.min(0.10),Validators.required]),
     description: new FormControl(''),
-    image: new FormControl('', Validators.required)
+    image: new FormControl('')
   })
 
   @Input() part: Part;
   @Output() msgEvent = new EventEmitter<string>();
 
 
-  constructor() { }
+  constructor(private partsService: PartsService, private storage: AngularFireStorage) { }
 
   ngOnInit(): void {
+    (document.querySelector("#toForSale") as HTMLElement).click();
+    // console.log("part",this.part);
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.submitted = false;
+    this.imgSrc = this.part.image;
+    this.selectedImg = null; 
+    this.formTemplate.reset();
+    this.formTemplate.setValue({
+      name: this.part.name,
+      quantity: this.part.quantity,
+      price: this.part.price,
+      description: this.part.description,
+      image: ''
+
+      // name: '',
+      // quantity: this.part.quantity,
+      // price: this.part.price,
+      // description: this.part.description,
+      // image: this.part.image
+    });
   }
 
 
@@ -59,6 +85,38 @@ export class EditPartComponent implements OnInit {
 
   onSubmit(formValue) {
 
+    if (this.formTemplate.valid){
+      console.log("image", (this.formTemplate.controls.image.value as string == ''))
+      if (this.formTemplate.controls.image.value as string == '') {
+        this.partsService.updatePart(this.part.key, {
+          name: formValue.name,
+          quantity: formValue.quantity,
+          price: formValue.price,
+          description: formValue.description
+        });
+        this.msgEvent.emit("submitted");
+      } else {
+        let filePath =`imagesForSale/${this.selectedImg.name.split('.').slice(0,-1).join('.')}_${new Date().getTime()}`;
+        const fileRef = this.storage.ref(filePath);
+
+        this.storage.upload(filePath, this.selectedImg).snapshotChanges().pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe((url) => {
+              // delete old image from storage
+              this.storage.storage.refFromURL(this.part.image).delete();
+              formValue['image'] = url;
+              this.partsService.updatePart(this.part.key, formValue as Part);
+              this.resetForm();
+              this.msgEvent.emit("submitted");
+            })
+          })
+        ).subscribe();
+
+      }
+    } else {
+      // alert("Invalid form");
+      this.submitted = true;
+    }
 
   }
 

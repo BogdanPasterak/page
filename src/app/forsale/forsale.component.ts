@@ -46,7 +46,7 @@ export class ForsaleComponent implements OnInit {
 
   receiveMsg($event) {
     if (typeof $event == "string") {
-      if ($event == "cancel") {
+        if ($event == "cancel" || $event == "submitted") {
         this.editedPart = null;
       }
     } else if (typeof $event == "object") {
