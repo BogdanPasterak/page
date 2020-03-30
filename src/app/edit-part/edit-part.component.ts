@@ -86,7 +86,7 @@ export class EditPartComponent implements OnInit {
   onSubmit(formValue) {
 
     if (this.formTemplate.valid){
-      console.log("image", (this.formTemplate.controls.image.value as string == ''))
+      // console.log("image", (this.formTemplate.controls.image.value as string == ''))
       if (this.formTemplate.controls.image.value as string == '') {
         this.partsService.updatePart(this.part.key, {
           name: formValue.name,
