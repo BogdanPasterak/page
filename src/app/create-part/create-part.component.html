@@ -7,8 +7,8 @@
             <div class="text-danger" *ngIf="fC.name.invalid && submitted">Name must be at least 3 characters long.</div>
         </div>
 
-        <div class="row text-center">
-            <img [src]="imgSrc" alt="photo" (click)="fileUploader.click()">
+        <div class="row form-group text-center">
+            <img id="preview" [src]="imgSrc" alt="photo" (click)="fileUploader.click()">
             <!-- (dragover)="onDragOver($event)" (drop)="onDrop($event)" -->
         </div>
         <div class="form-group">
@@ -42,10 +42,10 @@
 
         <div class="form-group">
             <div class="col-xs-6">
-                <button type="submit" class="btn btn-danger btn-block">Submit</button>
+                <button class="btn btn-success btn-block" (click)="cancel()">Cancel</button>
             </div>
             <div class="col-xs-6">
-                <button class="btn btn-success btn-block" (click)="cancel()">Cancel</button>
+                <button type="submit" class="btn btn-danger btn-block">Submit</button>
             </div>
         </div>
 

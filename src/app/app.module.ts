@@ -29,6 +29,7 @@ import { ModalComponent as ModalComponent } from './modal/modal.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditPartComponent } from './edit-part/edit-part.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { EditPartComponent } from './edit-part/edit-part.component';
     CreatePartComponent,
     LoginComponent,
     ModalComponent,
-    EditPartComponent
+    EditPartComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

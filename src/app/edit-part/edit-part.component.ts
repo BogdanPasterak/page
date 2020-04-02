@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PartsService } from '../parts.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { ImageResizeService } from '../image-resize.service';
+import { DataFile } from '../dataFile';
 
 @Component({
   selector: 'app-edit-part',
@@ -12,7 +14,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class EditPartComponent implements OnInit {
 
-  imgSrc: string ='';
+  imgSrc: string | ArrayBuffer ='';
   selectedImg: any = null;
   submitted: boolean = false;
 
@@ -29,7 +31,11 @@ export class EditPartComponent implements OnInit {
   @Output() msgEvent = new EventEmitter<string>();
 
 
-  constructor(private partsService: PartsService, private storage: AngularFireStorage) { }
+  constructor(
+    private partsService: PartsService,
+    private storage: AngularFireStorage,
+    private resize: ImageResizeService
+    ) { }
 
   ngOnInit(): void {
     (document.querySelector("#toForSale") as HTMLElement).click();
@@ -48,12 +54,6 @@ export class EditPartComponent implements OnInit {
       price: this.part.price,
       description: this.part.description,
       image: ''
-
-      // name: '',
-      // quantity: this.part.quantity,
-      // price: this.part.price,
-      // description: this.part.description,
-      // image: this.part.image
     });
   }
 
@@ -65,14 +65,20 @@ export class EditPartComponent implements OnInit {
 
   show(files:any, firstFile: File) {
     if (files && firstFile){
-      const reader = new FileReader();
-      reader.onload = (e:any) => {this.imgSrc = e.target.result};
-      reader.readAsDataURL(firstFile);
-      this.selectedImg = firstFile;
-      // console.log("Value", this.formTemplate.controls.image.value);
+      this.resize.getImgAsync(firstFile)
+      .then((res: DataFile) => {
+        this.imgSrc = res.data;
+        this.selectedImg = res.file;
+      })
+      .catch((error) => {
+        console.log(error);
+        this.selectedImg = null;
+        this.imgSrc = 'assets/img/camera.svg';
+      });
+
     } else {
-      this.imgSrc = 'assets/img/camera.svg';
       this.selectedImg = null;
+      this.imgSrc = 'assets/img/camera.svg';
     }
 
   }
@@ -96,7 +102,7 @@ export class EditPartComponent implements OnInit {
         });
         this.msgEvent.emit("submitted");
       } else {
-        let filePath =`imagesForSale/${this.selectedImg.name.split('.').slice(0,-1).join('.')}_${new Date().getTime()}`;
+        let filePath =`imagesForSale/${this.selectedImg.name}_${new Date().getTime()}`;
         const fileRef = this.storage.ref(filePath);
 
         this.storage.upload(filePath, this.selectedImg).snapshotChanges().pipe(

@@ -1,0 +1,16 @@
+<div class="container-fluid footer">
+    <div class="col-sm-4">
+        <div class="row">
+            <ul>
+                <li>
+                    <h3><a href="#myPage">
+                        Site Links
+                    </a></h3>
+                </li>
+                <li *ngFor="let link of linksLink">
+                    <a href="" href="{{link.target}}" (click)="sendMessage(link.target)">{{link.display}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

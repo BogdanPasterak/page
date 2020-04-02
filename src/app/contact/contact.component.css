@@ -8,6 +8,15 @@
     font-weight: bold;
 }
 
+h3 {
+    font-size: 21px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .myrow p {
     margin: 0;
 }

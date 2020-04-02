@@ -1,20 +1,18 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Link } from '../link';
 import { LINKS } from "../mock-links";
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class FooterComponent implements OnInit {
 
-  navbarlist :Link[] = LINKS;
+  linksLink:Link[] = LINKS;
+  constructor() { }
 
   @Output() messageEvent = new EventEmitter<string>();
-  
-  constructor() { }
 
   ngOnInit(): void {
   }

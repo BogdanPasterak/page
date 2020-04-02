@@ -1,0 +1,33 @@
+.footer {
+    background-color: #107;
+    color: white;
+    margin: 0;
+    padding-top: 15px;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+ul {
+    list-style: none;
+    padding-left: 1em;
+}
+
+li>a {
+    padding: 0 10px;
+}
+
+a,
+h3>a {
+    color: white;
+    text-decoration: none;
+    padding: 0 5px;
+}
+
+li>a:hover,
+li>h3>a:hover {
+    background-color: #cff !important;
+    color: #805 !important;
+}

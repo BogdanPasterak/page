@@ -20,7 +20,5 @@
         </div>
 
     </ng-template>
-    <div id="bottom" class="space-navbar" style="width: 100%; height: 600px; background-color: #afa;">
-        <p>fill footer</p>
-    </div>
+    <app-footer id="footer" (messageEvent)="receiveMsg($event)"></app-footer>
 </div>
