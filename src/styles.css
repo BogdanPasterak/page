@@ -48,24 +48,6 @@ h4 {
     visibility: visible;
 }
 
-@media (max-width: 350px) {
-    h4 {
-        font-size: 1.1em;
-    }
-    p {
-        font-size: 0.9em;
-    }
-}
-
-@media (max-width: 310px) {
-    h4 {
-        font-size: 1em;
-    }
-    p {
-        font-size: 0.8em;
-    }
-}
-
 
 /* Go from 0% to 100% opacity (see-through) and specify the percentage from when to slide in the element along the Y-axis */
 

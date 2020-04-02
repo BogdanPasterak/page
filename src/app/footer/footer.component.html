@@ -1,16 +1,44 @@
 <div class="container-fluid footer">
-    <div class="col-sm-4">
-        <div class="row">
-            <ul>
-                <li>
-                    <h3><a href="#myPage">
-                        Site Links
-                    </a></h3>
-                </li>
-                <li *ngFor="let link of linksLink">
-                    <a href="" href="{{link.target}}" (click)="sendMessage(link.target)">{{link.display}}</a>
-                </li>
-            </ul>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="row">
+                <ul>
+                    <li>
+                        <h3><a href="#myPage">
+                            Site Links
+                        </a></h3>
+                    </li>
+                    <li *ngFor="let link of linksLink">
+                        <a href="" href="{{link.target}}" (click)="sendMessage(link.target)">{{link.display}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+        <div class="col-sm-4">
+            <h3>We on the web</h3>
+            <p>
+                <a href="https://www.youtube.com/channel/UCXweXgoiLWD7ybJKQ4G2hUw" target="_blank">
+                    <i class="fab fa-youtube">&nbsp;-&nbsp;YouTube</i>
+                </a>
+            </p>
+            <p>
+                <a href="https://www.facebook.com/HomeAndCarService/" target="_blank">
+                    <i class="fab fa-facebook">&nbsp;-&nbsp;Facebook</i>
+                </a>
+            </p>
+            <p>
+                <a href="mailto:candhservice@gmail.com" target="_blank">
+                    <i class="far fa-envelope">&nbsp;-&nbsp;Gmail</i>
+                </a>
+            </p>
+            <p>
+                <a href="tel:0871-222-770" target="_blank">
+                    <i class="fa fa-mobile-alt">&nbsp;-&nbsp;0871 222 770</i>
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="row text-center">
+        <p>&copy; 2020 Home & Car Services, author: <a href="mailto:bogdanpasterak@gmail.com" target="_blank"> Bogdan Pasterak </a></p>
     </div>
 </div>

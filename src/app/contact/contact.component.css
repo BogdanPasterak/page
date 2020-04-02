@@ -52,12 +52,31 @@ a {
         width: 300px;
         height: 240px;
     }
+    h4 {
+        font-size: 1.1em;
+    }
+    p {
+        font-size: 0.9em;
+    }
+    h3 {
+        font-size: 19px;
+    }
 }
 
 @media (max-width: 330px) {
     #map {
         width: 276px;
         height: 230px;
+    }
+    h4 {
+        font-size: 1em;
+    }
+    p {
+        font-size: 0.8em;
+    }
+    h3 {
+        font-size: 17px;
+        letter-spacing: -0.7px;
     }
 }
 
