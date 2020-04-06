@@ -1,5 +1,0 @@
-[
-    { "id": 1, "name": "Glasses", "quantity": 2, "price": 3.75, "description": "My glasses", "image": "assets/img/img-parts/glasses.jpg" },
-    { "id": 3, "name": "Mug", "quantity": 10, "price": 1.99, "description": "My mug with coffe inside, very hot", "image": "assets/img/img-parts/mug.jpg" }
-
-]
