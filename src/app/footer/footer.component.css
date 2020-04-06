@@ -31,3 +31,17 @@ li>h3>a:hover {
     background-color: #cff !important;
     color: #805 !important;
 }
+
+span {
+    white-space: nowrap;
+}
+
+span:first-of-type {
+    padding-right: 5%;
+}
+
+.break-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
