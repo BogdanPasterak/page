@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-xs-12" *ngIf="!adding">
+        <button class="btn btn-warning btn-block" (click)="addSlide()">Add slide</button>
+    </div>
+    <form [formGroup]="formTemplate" *ngIf="adding" (submit)="onSubmit(formTemplate.value)">
+        <h3 class="text-center">Add picture to slider</h3>
+
+        <div class="row form-group text-center">
+            <img id="preview" [src]="imgSrc" alt="photo" (click)="fileUploader.click()">
+        </div>
+        <div class="form-group">
+            <input type="file" accept="image/*" required class="form-control" formControlName="image" #fileUploader (change)="showPreview($event)">
+            <div class="text-danger" *ngIf="fC.image.invalid && submitted">Select photo file</div>
+        </div>
+
+
+        <div class="form-group">
+            <input minlength="3" required class="form-control" formControlName="description" placeholder="Description">
+            <div class="text-danger" *ngIf="fC.description.invalid && submitted">Description is required.</div>
+        </div>
+
+
+        <div class="col-xs-6">
+            <button class="btn btn-success btn-block" (click)="cancel()">Cancel</button>
+        </div>
+        <div class="col-xs-6">
+            <button type="submit" class="btn btn-danger btn-block">Ready</button>
+        </div>
+    </form>
+</div>

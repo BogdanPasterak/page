@@ -30,6 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditPartComponent } from './edit-part/edit-part.component';
 import { FooterComponent } from './footer/footer.component';
+import { AddSlideComponent } from './add-slide/add-slide.component';
+import { EditSlideComponent } from './edit-slide/edit-slide.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,9 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     ModalComponent,
     EditPartComponent,
-    FooterComponent
+    FooterComponent,
+    AddSlideComponent,
+    EditSlideComponent
   ],
   imports: [
     BrowserModule,
