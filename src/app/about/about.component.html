@@ -10,7 +10,11 @@
         </div>
     </div>
 
-    <div *ngIf="(afAuth.user | async); else elseBlock">
+    <div *ngIf="((afAuth.user | async) && slides); else elseBlock">
+        <h3 class="text-center">Edit Slaids</h3>
+        <div class="row" *ngFor="let slide of sortPos()">
+            <app-edit-slide [slide]="slide"></app-edit-slide>
+        </div>
         <app-add-slide></app-add-slide>
     </div>
     <ng-template #elseBlock>

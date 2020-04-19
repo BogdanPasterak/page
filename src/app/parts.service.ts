@@ -5,6 +5,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable, of } from 'rxjs';
 import { Part } from './part';
 import { PARTS } from './mock-parts';
+import { Slide } from './slide';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,7 @@ export class PartsService {
   partsRef: AngularFireList<Part> = null;
 
   constructor(db: AngularFireDatabase) {
-      this.partsRef = db.list('parts');
+    this.partsRef = db.list('parts');
   }
 
   createPart(part: Part): void {

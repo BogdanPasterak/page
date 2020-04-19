@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ImageResizeService } from '../image-resize.service';
 import { DataFile } from '../dataFile';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+import { Slide } from '../slide';
+import { SlidesService } from '../slides.service';
 
 @Component({
   selector: 'app-add-slide',
@@ -11,7 +15,7 @@ import { DataFile } from '../dataFile';
 export class AddSlideComponent implements OnInit {
 
   formTemplate = new FormGroup({
-    number: new FormControl(0, [Validators.max(19), Validators.min(0)]),
+    number: new FormControl(null, [Validators.max(19), Validators.min(0)]),
     description: new FormControl('', Validators.minLength(3)),
     image: new FormControl('', Validators.required)
   })
@@ -21,12 +25,15 @@ export class AddSlideComponent implements OnInit {
   imgSrc: string | ArrayBuffer;
   selectedImg: any;
 
-  constructor( private resize: ImageResizeService
+  constructor(
+    private slidesService: SlidesService,
+    private storage: AngularFireStorage,
+    private resize: ImageResizeService
     ) { }
 
   showPreview(event: any) {
     if (event.target.files && event.target.files[0]){
-      this.resize.getImgAsync(event.target.files[0] as File)
+      this.resize.getImgAsync(event.target.files[0])
       .then((res: DataFile) => {
         this.imgSrc = res.data;
         this.selectedImg = res.file;
@@ -63,23 +70,25 @@ export class AddSlideComponent implements OnInit {
     if (this.formTemplate.valid){
       this.adding = false;
 
-    //   let filePath =`imagesForSale/${this.selectedImg.name}_${new Date().getTime()}`;
-    //   const fileRef = this.storage.ref(filePath);
+      let filePath =`imagesSlaids/${this.selectedImg.name}_${new Date().getTime()}`;
+      const fileRef = this.storage.ref(filePath);
 
-    //   this.storage.upload(filePath, this.selectedImg).snapshotChanges().pipe(
-    //     finalize(() => {
-    //       fileRef.getDownloadURL().subscribe((url) => {
-    //         formValue['image'] = url;
-    //         this.partsService.createPart(formValue as Part);
-    //         this.resetForm();
-    //         this.msgEvent.emit("submitted");
-    //       })
-    //     })
-    //   ).subscribe();
-      this.resetForm();
+      this.storage.upload(filePath, this.selectedImg).snapshotChanges().pipe(
+        finalize(() => {
+          
+          fileRef.getDownloadURL().subscribe((url) => {
+            formValue['image'] = url;
+            this.slidesService.createSlide({
+              key: null,
+              image: url,
+              description: formValue['description'],
+              position: formValue['number']
+            } as Slide);
+            this.resetForm();
+          })
+        })
+      ).subscribe();
     } else {
-    //   // alert("Invalid form");
-      console.log("msg", this.formTemplate.controls.description);
       this.submitted = true;
     }
   }
@@ -94,12 +103,16 @@ export class AddSlideComponent implements OnInit {
     this.submitted = false;
     this.imgSrc = 'assets/img/camera.svg';
     this.selectedImg = null; 
-    this.formTemplate.reset();
-    this.formTemplate.setValue({
-      number: 0,
-      description: '',
-      image: ''
-    });
+    this.slidesService.getNumberSlides()
+    .then(nr => {
+      this.formTemplate.reset();
+      this.formTemplate.setValue({
+        number: nr,
+        description: '',
+        image: ''
+      });
+    })
+
   }
 
 
