@@ -77,13 +77,15 @@ export class AddSlideComponent implements OnInit {
         finalize(() => {
           
           fileRef.getDownloadURL().subscribe((url) => {
-            formValue['image'] = url;
-            this.slidesService.createSlide({
-              key: null,
-              image: url,
-              description: formValue['description'],
-              position: formValue['number']
-            } as Slide);
+            this.slidesService.getNumberSlides()
+            .then(nr => {
+              // console.log("nr", nr);
+              this.slidesService.createSlide({
+                image: url,
+                description: formValue['description'],
+                position: nr || 0
+              } as Slide);
+              });
             this.resetForm();
           })
         })
@@ -103,14 +105,11 @@ export class AddSlideComponent implements OnInit {
     this.submitted = false;
     this.imgSrc = 'assets/img/camera.svg';
     this.selectedImg = null; 
-    this.slidesService.getNumberSlides()
-    .then(nr => {
-      this.formTemplate.reset();
-      this.formTemplate.setValue({
-        number: nr,
-        description: '',
-        image: ''
-      });
+    this.formTemplate.reset();
+    this.formTemplate.setValue({
+      number: 0,
+      description: '',
+      image: ''
     })
 
   }

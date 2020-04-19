@@ -18,12 +18,13 @@ export class EditSlideComponent implements OnInit {
   formTemplate = new FormGroup({
     number: new FormControl(0, [Validators.max(19), Validators.min(0)]),
     description: new FormControl('', Validators.minLength(3)),
-    image: new FormControl('', Validators.required)
+    image: new FormControl('')
   })
 
   submitted: boolean;
   imgSrc: string | ArrayBuffer;
   selectedImg: any;
+  numberSlides: number;
 
   @Input() slide: Slide;
 
@@ -34,7 +35,7 @@ export class EditSlideComponent implements OnInit {
 ) { }
 
   ngOnInit(): void {
-    this.resetForm()
+    this.resetForm();
   }
 
   print() {
@@ -55,31 +56,62 @@ export class EditSlideComponent implements OnInit {
     this.resetForm();
   }
 
+  delete() {
+    this.slidesService.getNumberSlides()
+    .then(amount => {
+      // console.log(this.slide.position, amount);
+      this.storage.storage.refFromURL(this.slide.image).delete();
+      this.slidesService.deleteSlide(this.slide.key);
+      // corecting position
+      for (let index = this.slide.position + 1; index < amount; index++) {
+        this.slidesService.getSlideKeyByPosition(index)
+        .then(key => {
+          this.slidesService.updateSlide(key, {position: index - 1} as Slide)
+        });
+      }
+    })
+  }
+
+  moveUp () {
+    this.slidesService.getSlideKeyByPosition(this.slide.position - 1)
+    .then(key => {
+      this.slidesService.updateSlide(key, {position: this.slide.position} as Slide);
+      this.slidesService.updateSlide(this.slide.key, {position: this.slide.position - 1} as Slide);
+    })
+
+  }
+
   onSubmit(formValue) {
 
-    // if (this.formTemplate.valid){
+    if (this.formTemplate.valid){
+      if (this.selectedImg) {
+        // change image
+        let filePath =`imagesSlaids/${this.selectedImg.name}_${new Date().getTime()}`;
+        const fileRef = this.storage.ref(filePath);
 
-    //   let filePath =`imagesSlaids/${this.selectedImg.name}_${new Date().getTime()}`;
-    //   const fileRef = this.storage.ref(filePath);
-
-    //   this.storage.upload(filePath, this.selectedImg).snapshotChanges().pipe(
-    //     finalize(() => {
-          
-    //       fileRef.getDownloadURL().subscribe((url) => {
-    //         formValue['image'] = url;
-    //         this.slidesService.createSlide({
-    //           key: null,
-    //           image: url,
-    //           description: formValue['description'],
-    //           position: formValue['number']
-    //         } as Slide);
-    //         this.resetForm();
-    //       })
-    //     })
-    //   ).subscribe();
-    // } else {
-    //   this.submitted = true;
-    // }
+          this.storage.upload(filePath, this.selectedImg).snapshotChanges().pipe(
+            finalize(() => {
+              fileRef.getDownloadURL().subscribe((url) => {
+                this.storage.storage.refFromURL(this.slide.image).delete();
+                formValue['image'] = url;
+                this.slidesService.updateSlide(this.slide.key, {
+                  image: url,
+                  description: formValue['description'],
+                  position: formValue['number']
+                } as Slide);
+                this.resetForm();
+              })
+            })
+          ).subscribe();
+      } else if (this.formTemplate.controls.description.dirty) {
+        this.slide.description = this.formTemplate.controls.description.value;
+        this.slidesService.updateSlide(this.slide.key, {
+          description: this.slide.description
+        } as Slide);
+      }
+    } else {
+      this.submitted = true;
+    }
   }
 
 

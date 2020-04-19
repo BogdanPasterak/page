@@ -43,9 +43,12 @@ export class SlidesService {
 
   getNumberSlides(): Promise<any> {
     return this.ref.once('value')
-    .then(snapshot => snapshot.val())
+    .then(snapshot => snapshot.val() || {})
     .then(v => Object.keys(v).length)
-    .catch(err => new Error(err))
+    .catch(err => {
+      console.log("error", err)
+      return new Error(err);
+    })
     }
 
 }

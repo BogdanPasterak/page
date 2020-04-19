@@ -1,4 +1,5 @@
 <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+    <h4 class="text-center">Edit Slide {{ slide.position + 1 }}</h4>
     <div class="col-sm-6">
         <div class="row form-group text-center">
             <img id="preview" [src]="imgSrc" alt="photo" (click)="fileUploader.click()">
@@ -7,7 +8,7 @@
     <div class="col-sm-6">
         <div class="form-group">
             <label>Change Image</label>
-            <input type="file" accept="image/*" required class="form-control" formControlName="image" #fileUploader (change)="showPreview($event)">
+            <input type="file" accept="image/*" class="form-control" formControlName="image" #fileUploader (change)="showPreview($event)">
             <div class="text-danger" *ngIf="fC.image.invalid && submitted">Select photo file</div>
         </div>
 
@@ -16,12 +17,24 @@
             <input minlength="3" required class="form-control" formControlName="description" placeholder="Description">
             <div class="text-danger" *ngIf="fC.description.invalid && submitted">Description is required.</div>
         </div>
-        <div class="row">
-            <div class="col-xs-6">
+        <div class="row mb">
+            <div class="col-xs-2" *ngIf="slide.position; else elseSpace">
+                <button class="btn btn-warning btn-block" (click)="moveUp()">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+            <ng-template #elseSpace>
+                <div class="col-xs-1"></div>
+            </ng-template>
+
+            <div class="col-xs-3">
                 <button class="btn btn-success btn-block" (click)="cancel()">Cancel</button>
             </div>
-            <div class="col-xs-6">
-                <button type="submit" class="btn btn-danger btn-block">Ready</button>
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-warning btn-block">Change</button>
+            </div>
+            <div class="col-xs-3">
+                <button class="btn btn-danger btn-block" (click)="delete()">Delete</button>
             </div>
 
         </div>
