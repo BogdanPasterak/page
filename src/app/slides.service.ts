@@ -14,7 +14,6 @@ export class SlidesService {
   constructor(db: AngularFireDatabase) {
     this.slideRef = db.list('slide');
     this.ref = db.database.ref('slide');
-    // console.log("ref", this.doc);
   }
 
 
@@ -45,10 +44,7 @@ export class SlidesService {
     return this.ref.once('value')
     .then(snapshot => snapshot.val() || {})
     .then(v => Object.keys(v).length)
-    .catch(err => {
-      console.log("error", err)
-      return new Error(err);
-    })
+    .catch(err => new Error(err))
     }
 
 }
