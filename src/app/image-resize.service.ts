@@ -8,8 +8,8 @@ import { DataFile } from './dataFile';
 })
 export class ImageResizeService {
 
-  width: number = 1200;
-  height: number = 900;
+  width: number = 1400;
+  height: number = 1050;
 
   constructor() { }
 
