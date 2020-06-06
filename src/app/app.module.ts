@@ -32,6 +32,7 @@ import { EditPartComponent } from './edit-part/edit-part.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddSlideComponent } from './add-slide/add-slide.component';
 import { EditSlideComponent } from './edit-slide/edit-slide.component';
+import { ForSaleViewComponent } from './for-sale-view/for-sale-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import { EditSlideComponent } from './edit-slide/edit-slide.component';
     EditPartComponent,
     FooterComponent,
     AddSlideComponent,
-    EditSlideComponent
+    EditSlideComponent,
+    ForSaleViewComponent
   ],
   imports: [
     BrowserModule,

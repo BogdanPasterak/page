@@ -1,6 +1,7 @@
 .myrow:nth-child(2n) {
-    background-color: rgba(255, 238, 0, 0.2);
+    background-color: #dff;
     padding: 15px 0;
+    border-radius: 25px 0;
 }
 
 .myrow h4 {

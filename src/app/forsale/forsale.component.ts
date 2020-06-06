@@ -3,6 +3,8 @@ import { Part } from '../part';
 import { PartsService } from '../parts.service';
 import { map } from 'rxjs/operators'
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { PartService } from '../part.service';
 
 
 @Component({
@@ -16,12 +18,11 @@ export class ForsaleComponent implements OnInit {
   selectedPart: Part;
   editedPart: Part;
 
-  constructor(private partsService: PartsService) { }
+  constructor(private partsService: PartsService, private partService: PartService, private _router: Router) { }
 
   ngOnInit(): void {
     this.getPartsList();
     this.editedPart = null;
-    // this.parts = [{ key: "12", name: 'Mug', quantity: 10, price: 1.99, description:'My mug with coffe inside, very hot', image: 'assets/img/img-parts/mug.jpg'}];
   }
 
   getPartsList(): void {
@@ -38,6 +39,8 @@ export class ForsaleComponent implements OnInit {
   onSelectPart(part: Part): void {
     this.selectedPart = part;
     // console.log(part);
+    this.partService.changePart(part);
+    this._router.navigate(['/view']);
   }
 
   getSelectedPart(): Part {

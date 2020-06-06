@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  navbarlist :Link[] = LINKS;
+  navbarlist: Link[] = LINKS;
+  collapse: HTMLDivElement = null;
 
   @Output() messageEvent = new EventEmitter<string>();
   
@@ -20,6 +21,10 @@ export class NavbarComponent implements OnInit {
   }
 
   sendMessage(message: string) {
+    if (! this.collapse) {
+      this.collapse = document.querySelector("#myNavbar");
+    }
+    this.collapse.classList.remove("in");
     this.messageEvent.emit(message.replace(/#/, ''));
   }
 

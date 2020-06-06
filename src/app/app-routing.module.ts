@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { ForsaleComponent } from './forsale/forsale.component';
 import { AppComponent } from './app.component';
 import { HomeandcarComponent } from './homeandcar/homeandcar.component';
+import { ForSaleViewComponent } from './for-sale-view/for-sale-view.component';
 
 
 const routes: Routes = [
-  { path: 'homeandcar', component: HomeandcarComponent},
-  { path: 'forsale', component: ForsaleComponent}
-  // { path: '', redirectTo: '/homeandcar', pathMatch: 'full'}
+  { path: '', component: HomeandcarComponent},
+  // { path: '//#endregion', component: HomeandcarComponent},
+  // { path: '/homeandcar',  component: HomeandcarComponent, pathMatch: 'full'},
+  { path: 'view', component: ForSaleViewComponent}
 
 ];
 

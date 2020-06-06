@@ -10,7 +10,11 @@
         <!-- <p>{{section}}</p> -->
         <app-car id="car"></app-car>
         <app-contact id="contact"></app-contact>
-        <div class="content" role="main"></div>
+        <div class="frame" (click)="toForSale()">
+            <div class="toforsale">
+                <h2>For sale <code>(click)</code></h2>
+            </div>
+        </div>
     </div>
     <ng-template #salepage class="space-navbar">
         <div [hidden]="login">

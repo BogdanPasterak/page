@@ -13,9 +13,13 @@ h3 {
 ul {
     list-style: none;
     padding-left: 1em;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 1em;
 }
 
 li>a {
+    border-radius: 7px 0;
     padding: 0 10px;
 }
 

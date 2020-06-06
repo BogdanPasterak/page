@@ -2,3 +2,28 @@
     max-width: 1300px;
     margin: auto;
 }
+
+code {
+    background-color: inherit;
+    text-transform: none;
+    color: inherit;
+}
+
+.toforsale {
+    box-shadow: 5px 5px 15px 5px #000000;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 2% 3%;
+}
+
+.toforsale:hover {
+    cursor: pointer;
+}
+
+h2 {
+    width: fit-content;
+    margin: auto;
+}
